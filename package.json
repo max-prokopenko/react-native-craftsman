@@ -1,0 +1,19 @@
+{
+  "name": "react-native-craftsman",
+  "version": "1.0.0",
+  "description": "Tool for fast building react-native apps",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Max Prokopenko",
+  "license": "ISC",
+  "preferGlobal": true,
+  "bin": {
+    "craft": "index.js"
+  },
+  "dependencies": {
+    "chalk": "^2.3.0",
+    "fs": "0.0.1-security",
+    "progress": "^2.0.0"
+  }
+}
