@@ -37,7 +37,7 @@ Packages included un basic setup:
 
 To add new view/route for your app run 
 ```
-craft add RouteName
+craft add route RouteName
 ```
 It will set up all needed configuration for the route and create a route folder to ./src/views/
 
