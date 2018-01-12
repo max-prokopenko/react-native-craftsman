@@ -108,7 +108,11 @@ switch(command) {
                         if (err) throw err;
                     });
                     barD.tick(2);
+                    mainViewFile = mainViewFile.replace(/name_to_replace/gi, 'Main');
                     fs.writeFile('./' + projectName + '/src/views/Main/index.js', mainViewFile, function(err) {
+                        if (err) throw err;
+                    });
+                    fs.writeFile('./' + projectName + '/src/views/Main/styles.js', stylesFile, function(err) {
                         if (err) throw err;
                     });
                     barD.tick(3);
@@ -124,9 +128,7 @@ switch(command) {
                         if (err) throw err;
                     });
                     barD.tick(6);
-                    fs.writeFile('./' + projectName + '/src/views/Main/styles.js', stylesFile, function(err) {
-                        if (err) throw err;
-                    });
+                    
                     barD.tick(7);
                 
                     console.log('');
@@ -158,15 +160,16 @@ switch(command) {
         var moduleName = userArgs[1];
         if(moduleName && moduleName != '') {
             switch(moduleName) {
-                case 'navigation':
-                        console.log('');
-                        console.log('Craft is installing navigation...');
-                        installPackage('react-navigation', function() {
+                case 'route':
+                        var routeName = userArgs[2];
+                        if(routeName && routeName != '') {
                             console.log('');
-                            createConfigFolder(function() {
-                                console.log(chalk.green('Craft successfully installed navigation!')); 
-                            });
-                        });
+                            console.log('Craft is defining navigation...');
+                            addRouteConfig(routeName);
+                        }
+                        else {
+                            console.error(chalk.red('Craft failed! Route name missing'));
+                        }
                     break;
                 default:
                     console.error(chalk.red('Craft failed! Unknown command'));
@@ -228,4 +231,46 @@ function createConfigFolder(done) {
         fs.mkdirSync(dir);
         done();
     }
+}
+
+function getFileData(file) {
+    fs.readFile(file, "utf8", function(err, data){
+        if ( err ){ throw err;}
+        console.log(data);
+    });
+}
+
+
+function addRouteConfig(name) {
+    fs.readFile('./src/config/router.js', "utf8", function(err, data){
+        if ( err ){ throw err;}
+        let router = "import " + name + " from '../views/" + name + "'; \r\n" + data;
+        var dir = './src/views/' + name;
+        if (!fs.existsSync(dir)){
+            fs.mkdirSync(dir);
+            let newRoute = 'StackNavigator({\r\n    ' + name + ': {\r\n        screen: ' + name + ',\r\n    },\r\n';
+            router = router.replace(/StackNavigator\({/g, newRoute);
+            fs.writeFile('./src/config/router.js', router, {"encoding":'utf8'}, function(err){
+                if ( err ) { throw err; }
+            
+            //Adding route folder
+            
+
+                mainViewFile = mainViewFile.replace(/name_to_replace/gi, name);
+                fs.writeFile('./' + projectName + '/src/views/' + name + '/index.js', mainViewFile, function(err) {
+                    if (err) throw err;
+                });
+                fs.writeFile('./' + projectName + '/src/views/' + name + '/styles.js', stylesFile, function(err) {
+                    if (err) throw err;
+                });
+                
+                console.log('');
+                console.log(chalk.green(' Craft successfully added route configurations!'));   
+            
+            });
+        }
+        else {
+            console.error(chalk.red('Craft failed! Route already exists'));
+        }
+    });
 }

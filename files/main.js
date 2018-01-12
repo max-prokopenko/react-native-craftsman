@@ -27,8 +27,8 @@ function mapDispatchToProps(dispatch) {
 }
 
 
-class Main extends Component {
-  static navigationOptions = { title: 'Main', header: null };
+class name_to_replace extends Component {
+  static navigationOptions = { title: 'name_to_replace', header: null };
 
   constructor(props) {
     super(props);
@@ -50,7 +50,7 @@ class Main extends Component {
               barStyle="light-content"
             />
             <NavigationBar
-              centerComponent={<Title>Craftsman</Title>}
+              centerComponent={<Title>name_to_replace</Title>}
             />
         <ScrollView
           automaticallyAdjustContentInsets={false}
@@ -71,4 +71,4 @@ class Main extends Component {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default connect(mapStateToProps, mapDispatchToProps)(name_to_replace);
