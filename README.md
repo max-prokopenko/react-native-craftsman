@@ -1,12 +1,13 @@
 # react-native-craftsman
 
 This tool makes building reqact-native apps fast and easy.
+
 Setting up the project with Redux, React-Navigation and ui-kit takes one command!
 
 ## Getting Started
 Install the module with: 
 ```
-npm install react-native-craftsman
+npm install -g react-native-craftsman 
 ```
 
 react-native-craftsman requires react-native-cli to be installed globally, it can be done with 
