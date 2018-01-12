@@ -24,6 +24,7 @@ craft create ProjectName
 It will set up project for you, add basic folder structure and install all needed packages. 
 
 Packages included un basic setup:
+
     * react-navigation
     * react-redux
     * redux
