@@ -1,6 +1,6 @@
 # react-native-craftsman
 
-This tool makes building reqact-native apps fast and easy.
+This tool makes building react-native apps fast and easy.
 
 Setting up the project with Redux, React-Navigation and ui-kit takes one command!
 
