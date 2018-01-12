@@ -7,6 +7,10 @@
   },
   "author": "Max Prokopenko",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/max-prokopenko/react-native-craft"
+},
   "preferGlobal": true,
   "bin": {
     "craft": "index.js"
